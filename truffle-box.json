@@ -10,55 +10,41 @@
     "hooks": {
         "post-unpack": "echo \"Hey ${HOST}\""
     },
-    "modifiers": {
+    "recipes": {
         "prompts": [
             {
-                "type": "list",
                 "message": "Select a framework",
-                "name": "framework",
-                "choices": [
-                    { "name": "React", "checked": true },
-                    { "name": "Vue" }
-                ]
+                "default": "React"
             },
-            {
-                "type": "list",
-                "message": "TypeScript or JavaScript?",
-                "name": "package",
-                "choices": [
-                    { "name": "TypeScript", "checked": true },
-                    { "name": "JavaScript" }
-                ]
+            { 
+                "message": "TS or JS?",
+                "default": "TypeScript"
             }
         ],
-        "recipe-common": [
+        "common": [
             "truffle-config.js",
             "contracts/Migrations.sol",
             "migrations/1_initial_migration.js",
             "test/.gitkeep"
         ],
-        "recipes": {
-            "React-TypeScript": [
-                "tsconfig.json",
-                "client/shared.ts",
-                { "from": "client/react-ts/package.json", "to": "client/package.json" },
-                { "from": "client/react-ts/src/App.tsx", "to": "client/src/App.tsx" }
-            ],
-            "React-JavaScript": [
+        "specs": {
+            "React": {
+                "TypeScript": [
+                    "tsconfig.json",
+                    "client/shared.ts",
+                    { "from": "client/react-ts/package.json", "to": "client/package.json" },
+                    { "from": "client/react-ts/src/App.tsx", "to": "client/src/App.tsx" }
+                ],
+                "JavaScript": [
+                    "client/shared.js",
+                    { "from": "client/react-js/package.json", "to": "client/package.json" },
+                    { "from": "client/react-js/src/App.jsx", "to": "client/src/App.jsx" }
+                ]
+            },
+            "Vue": [
                 "client/shared.js",
-                { "from": "client/react-js/package.json", "to": "client/package.json" },
-                { "from": "client/react-js/src/App.jsx", "to": "client/src/App.jsx" }
-            ],
-            "Vue-TypeScript": [
-                "tsconfig.json",
-                "client/shared.ts",
-                { "from": "client/vue-ts/package.json", "to": "client/package.json" },
-                { "from": "client/vue-ts/src/App.vue", "to": "client/src/App.vue" }
-            ],
-            "Vue-JavaScript": [
-                "client/shared.js",
-                { "from": "client/vue-js/package.json", "to": "client/package.json" },
-                { "from": "client/vue-js/src/App.vue", "to": "client/src/App.vue" }
+                { "from": "client/vue/package.json", "to": "client/package.json" },
+                { "from": "client/vue/src/App.vue", "to": "client/src/App.vue" }
             ]
         }
     }
