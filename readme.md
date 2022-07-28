@@ -1,4 +1,4 @@
-# Truffle Box Example
+# Truffle Recipe Box
 
 Working example with `recipes` property in `truffle-box.json`, allowing user to select a recipe when unboxing.
 
